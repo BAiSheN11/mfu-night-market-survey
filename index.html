@@ -6,13 +6,13 @@
   <title>MFU Night Market Survey</title>
   <style>
     :root{
-      --bg:#fff7ed;          /* warm cream */
+      --bg:#fff7ed;
       --card:#ffffff;
-      --ink:#1f2937;         /* slate */
+      --ink:#1f2937;
       --muted:#6b7280;
-      --line:#fde3c2;        /* soft orange line */
-      --accent:#f97316;      /* orange */
-      --accent2:#ef4444;     /* red */
+      --line:#fde3c2;
+      --accent:#f97316;
+      --accent2:#ef4444;
       --good:#16a34a;
       --warn:#f59e0b;
       --danger:#dc2626;
@@ -29,15 +29,16 @@
         radial-gradient(900px 600px at 15% 0%, rgba(249,115,22,.18), transparent 60%),
         radial-gradient(850px 600px at 90% 10%, rgba(239,68,68,.12), transparent 55%),
         var(--bg);
-      padding:18px;
+      padding:16px;
     }
 
-    .wrap{max-width:1000px;margin:0 auto}
+    .wrap{max-width:1020px;margin:0 auto}
+
     .hero{
       background: linear-gradient(135deg, rgba(249,115,22,.12), rgba(239,68,68,.08));
       border:1px solid var(--line);
       border-radius: var(--radius);
-      padding:18px 18px;
+      padding:16px 16px;
       box-shadow: var(--shadow);
       display:flex;
       align-items:flex-start;
@@ -45,7 +46,25 @@
       gap:12px;
     }
     .hero h1{margin:0;font-size:22px;letter-spacing:.2px}
-    .hero p{margin:8px 0 0;color:var(--muted);font-size:13px;line-height:1.45;max-width:680px}
+    .hero p{margin:8px 0 0;color:var(--muted);font-size:13px;line-height:1.45;max-width:720px}
+
+    .topRight{
+      display:flex;flex-direction:column;align-items:flex-end;gap:8px;
+      min-width: 180px;
+    }
+    .langWrap{
+      display:flex;gap:8px;align-items:center;
+      background:#fff;border:1px solid var(--line);
+      padding:8px 10px;border-radius:999px;
+      box-shadow: 0 8px 18px rgba(17,24,39,.06);
+    }
+    .langWrap label{margin:0;font-size:12px;color:#9a3412}
+    .langWrap select{
+      border:0;background:transparent;
+      font-weight:800;color:#7c2d12;
+      padding:0; outline:none;
+    }
+
     .tag{
       white-space:nowrap;
       background:#fff;
@@ -60,11 +79,13 @@
     .grid{
       margin-top:14px;
       display:grid;
-      grid-template-columns: 1.2fr .8fr;
+      grid-template-columns: 1.15fr .85fr;
       gap:14px;
     }
-    @media(max-width: 920px){
+    @media(max-width: 980px){
       .grid{grid-template-columns:1fr}
+      .topRight{align-items:flex-start;min-width:auto}
+      .hero{flex-direction:column}
     }
 
     .card{
@@ -82,10 +103,20 @@
       display:flex;align-items:center;justify-content:space-between;gap:12px;
     }
     .cardHeader h2{margin:0;font-size:15px}
+    .pill{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:8px 10px;
+      font-size:12px;
+      color:#9a3412;
+      box-shadow: 0 8px 18px rgba(17,24,39,.06);
+      white-space:nowrap;
+    }
 
     .progressWrap{display:flex;align-items:center;gap:10px}
     .bar{
-      width:170px;height:10px;border-radius:999px;
+      width:190px;height:10px;border-radius:999px;
       background:#fff1e6;border:1px solid var(--line);
       overflow:hidden;
     }
@@ -104,19 +135,20 @@
     @keyframes fade{from{opacity:.6;transform:translateY(2px)}to{opacity:1;transform:translateY(0)}}
 
     .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    @media(max-width:640px){.row{grid-template-columns:1fr}}
+    @media(max-width:720px){.row{grid-template-columns:1fr}}
 
     label{display:block;font-size:12px;color:var(--muted);margin:10px 0 6px}
     select,textarea{
       width:100%;
-      padding:11px 12px;
+      padding:14px 14px;              /* larger for phone/iPad */
       border-radius:14px;
       border:1px solid var(--line);
       background:#fffaf5;
       color:var(--ink);
       outline:none;
+      font-size:16px;                 /* avoids iOS zoom */
     }
-    textarea{min-height:88px;resize:vertical}
+    textarea{min-height:92px;resize:vertical}
     select:focus,textarea:focus{
       border-color: rgba(249,115,22,.65);
       box-shadow: 0 0 0 4px rgba(249,115,22,.15);
@@ -124,76 +156,52 @@
     }
     .hint{margin-top:8px;color:var(--muted);font-size:12px;line-height:1.4}
 
-    /* Nav chips */
-    .nav{
-      display:flex;flex-wrap:wrap;gap:8px;
-      padding:12px 16px;border-top:1px solid var(--line);
-      background:#fffaf5;
-    }
-    .chip{
-      border:1px solid var(--line);
-      background:#fff;
-      color:#9a3412;
-      padding:8px 10px;
-      border-radius:999px;
-      font-size:12px;
-      cursor:pointer;
-      user-select:none;
-      box-shadow: 0 10px 20px rgba(17,24,39,.05);
-    }
-    .chip.active{
-      border-color: rgba(249,115,22,.55);
-      box-shadow: 0 0 0 3px rgba(249,115,22,.18);
-      color:#7c2d12;
-      background: linear-gradient(180deg, rgba(249,115,22,.12), #fff);
-    }
-    .chip.done{
-      border-color: rgba(22,163,74,.35);
-      color:#166534;
-    }
-
     /* Buttons */
-    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .actions{
+      display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;
+      align-items:center;justify-content:space-between;
+    }
+    .btnRow{display:flex;gap:10px;flex-wrap:wrap}
     .btn{
       border:1px solid var(--line);
       background:#fff;
       color:var(--ink);
-      padding:11px 14px;
+      padding:13px 16px;
       border-radius:14px;
       cursor:pointer;
-      font-weight:800;
-      font-size:13px;
+      font-weight:900;
+      font-size:14px;
       box-shadow: 0 10px 20px rgba(17,24,39,.06);
+      min-height:46px;
     }
     .btn.primary{
       border-color: transparent;
       color:#fff;
       background: linear-gradient(90deg, var(--accent), var(--accent2));
     }
-    .btn.good{
-      border-color: transparent;
-      color:#fff;
-      background: linear-gradient(90deg, #22c55e, #16a34a);
-    }
     .btn:disabled{opacity:.55;cursor:not-allowed;box-shadow:none}
 
-    /* Messages */
     .msg{margin-top:10px;font-size:13px}
-    .msg.ok{color:var(--good);font-weight:700}
-    .msg.warn{color:var(--warn);font-weight:700}
-    .msg.err{color:var(--danger);font-weight:700}
+    .msg.ok{color:var(--good);font-weight:800}
+    .msg.warn{color:var(--warn);font-weight:800}
+    .msg.err{color:var(--danger);font-weight:800}
+
+    /* Consent */
+    .consentBox{
+      margin-top:10px;
+      padding:12px 12px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:#fffaf5;
+    }
+    .consentLine{
+      display:flex;gap:10px;align-items:flex-start;
+      font-size:13px;color:var(--ink);
+    }
+    .consentLine input{margin-top:3px;transform:scale(1.15)}
+    .consentLine a{color:#9a3412;text-decoration:underline}
 
     /* Result */
-    .pill{
-      background:#fff;
-      border:1px solid var(--line);
-      border-radius:999px;
-      padding:8px 10px;
-      font-size:12px;
-      color:#9a3412;
-      box-shadow: 0 8px 18px rgba(17,24,39,.06);
-      white-space:nowrap;
-    }
     .resultBox .small{font-size:12px;color:var(--muted);line-height:1.45}
     .badge{
       display:inline-flex;align-items:center;gap:8px;
@@ -206,7 +214,6 @@
       box-shadow: 0 10px 24px rgba(17,24,39,.08);
     }
     .dot{width:10px;height:10px;border-radius:50%}
-
     .vip .dot{background:#f59e0b}
     .surv .dot{background:#fb7185}
     .ghost .dot{background:#94a3b8}
@@ -224,6 +231,49 @@
 
     ul{margin:10px 0 0;padding-left:18px}
     li{margin:6px 0;color:#1f2937}
+
+    /* Small footer on last step */
+    .note{
+      margin-top:8px;
+      font-size:12px;
+      color:var(--muted);
+      line-height:1.4;
+    }
+
+    /* Modal (optional - for "read consent") */
+    .modalOverlay{
+      position:fixed; inset:0;
+      background:rgba(0,0,0,.35);
+      display:none;
+      align-items:center; justify-content:center;
+      padding:16px;
+      z-index:999;
+    }
+    .modal{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:16px;
+      max-width:720px;
+      width:100%;
+      box-shadow:0 30px 90px rgba(0,0,0,.25);
+      overflow:hidden;
+    }
+    .modalHead{
+      padding:12px 14px;
+      border-bottom:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(249,115,22,.10), #fff);
+      display:flex;justify-content:space-between;align-items:center;gap:10px;
+    }
+    .modalHead b{color:#7c2d12}
+    .modalBody{
+      padding:12px 14px;
+      color:var(--ink);
+      font-size:13px;
+      line-height:1.5;
+      max-height:60vh;
+      overflow:auto;
+      background:#fffaf5;
+    }
   </style>
 </head>
 
@@ -232,22 +282,30 @@
 
   <div class="hero">
     <div>
-      <h1>MFU Night Market Survey</h1>
-      <p>
-        Answer 5 sections. The website will calculate your <b>RFM score</b> and show your current status:
-        <b>The Night Market VIPs</b>, <b>The Street Food Survivalists</b>, or <b>The Ghost Shoppers</b>.
-        Then it will recommend products and save your response to the survey database.
+      <h1 id="t_title">MFU Night Market Survey</h1>
+      <p id="t_sub">
+        Answer the survey. The website calculates your <b>RFM score</b>, shows your current status
+        (VIPs / Survivalists / Ghost Shoppers), recommends products, and stores your response for research.
       </p>
     </div>
-    <div class="tag">Warm Market Style 🍢🥤</div>
+
+    <div class="topRight">
+      <div class="langWrap">
+        <label id="t_langLabel" for="lang">Language</label>
+        <select id="lang">
+          <option value="en">EN</option>
+          <option value="th">TH</option>
+        </select>
+      </div>
+      <div class="tag" id="t_styleTag">Welcome!!! 🍢🥤</div>
+    </div>
   </div>
 
   <div class="grid">
-
     <!-- FORM -->
     <div class="card">
       <div class="cardHeader">
-        <h2>Survey Form</h2>
+        <h2 id="t_formTitle">Survey Form</h2>
         <div class="progressWrap">
           <div class="bar"><div id="barFill"></div></div>
           <div class="stepTxt" id="stepTxt">Step 1/5</div>
@@ -255,20 +313,20 @@
       </div>
 
       <div class="cardBody">
-
-        <!-- Section 1 -->
+        <!-- Step 1 -->
         <div class="section active" id="sec1">
-          <h3 style="margin:0 0 6px">Section 1 — Demographic</h3>
+          <h3 id="t_s1" style="margin:0 0 6px">Section 1 — Basic Info</h3>
+
           <div class="row">
             <div>
-              <label>Gender *</label>
+              <label id="t_gender">Gender *</label>
               <select id="gender">
                 <option value="">Select</option>
                 <option>Male</option><option>Female</option><option>Other</option><option>Prefer not to say</option>
               </select>
             </div>
             <div>
-              <label>Age Range *</label>
+              <label id="t_age">Age Range *</label>
               <select id="age_range">
                 <option value="">Select</option>
                 <option>Under 18</option><option>18–22</option><option>23–30</option><option>31–40</option><option>Above 40</option>
@@ -278,7 +336,7 @@
 
           <div class="row">
             <div>
-              <label>Occupation *</label>
+              <label id="t_occ">Occupation *</label>
               <select id="occupation">
                 <option value="">Select</option>
                 <option>Undergraduate Student</option>
@@ -290,21 +348,22 @@
               </select>
             </div>
             <div>
-              <label>Nationality *</label>
+              <label id="t_nat">Nationality *</label>
               <select id="nationality">
                 <option value="">Select</option>
                 <option>Thai</option><option>Myanmar</option><option>Chinese</option><option>Other ASEAN</option><option>Other</option>
               </select>
             </div>
           </div>
-          <div class="hint">These fields help you describe and compare your customer groups in the report.</div>
+
+          <div class="hint" id="t_s1hint">Thank U</div>
         </div>
 
-        <!-- Section 2 -->
+        <!-- Step 2 -->
         <div class="section" id="sec2">
-          <h3 style="margin:0 0 6px">Section 2 — Recency (R)</h3>
+          <h3 id="t_s2" style="margin:0 0 6px">Section 2 — Recency (R)</h3>
 
-          <label>When was your last visit to MFU Night Market? *</label>
+          <label id="t_recency">When was your last visit to MFU Night Market? *</label>
           <select id="recency">
             <option value="">Select</option>
             <option value="last_week">Within the last week</option>
@@ -314,7 +373,7 @@
             <option value="more_3_months">More than 3 months ago</option>
           </select>
 
-          <label>Do you plan to visit again soon? *</label>
+          <label id="t_plan">Do you plan to visit again soon? *</label>
           <select id="plan_visit">
             <option value="">Select</option>
             <option>Yes, within this week</option>
@@ -323,14 +382,14 @@
             <option>No</option>
           </select>
 
-          <div class="hint">Recency indicates how recently customers visited the night market.</div>
+          <div class="hint" id="t_s2hint">Recency shows how recent the customer visited.</div>
         </div>
 
-        <!-- Section 3 -->
+        <!-- Step 3 -->
         <div class="section" id="sec3">
-          <h3 style="margin:0 0 6px">Section 3 — Frequency (F)</h3>
+          <h3 id="t_s3" style="margin:0 0 6px">Section 3 — Frequency (F)</h3>
 
-          <label>How often do you visit MFU Night Market? *</label>
+          <label id="t_freq">How often do you visit MFU Night Market? *</label>
           <select id="frequency">
             <option value="">Select</option>
             <option value="weekly">Every week</option>
@@ -340,20 +399,20 @@
             <option value="first_time">First time</option>
           </select>
 
-          <label>On average, how many items do you purchase per visit? *</label>
+          <label id="t_items">On average, how many items do you purchase per visit? *</label>
           <select id="items_per_visit">
             <option value="">Select</option>
             <option>1 item</option><option>2–3 items</option><option>4–5 items</option><option>More than 5 items</option>
           </select>
 
-          <div class="hint">Frequency shows customer engagement level (regular vs occasional).</div>
+          <div class="hint" id="t_s3hint">Frequency shows engagement level.</div>
         </div>
 
-        <!-- Section 4 -->
+        <!-- Step 4 -->
         <div class="section" id="sec4">
-          <h3 style="margin:0 0 6px">Section 4 — Monetary (M)</h3>
+          <h3 id="t_s4" style="margin:0 0 6px">Section 4 — Monetary (M)</h3>
 
-          <label>On average, how much do you spend per visit? *</label>
+          <label id="t_money">On average, how much do you spend per visit? *</label>
           <select id="monetary">
             <option value="">Select</option>
             <option value="lt_100">Less than 100 THB</option>
@@ -363,26 +422,26 @@
             <option value="gt_500">More than 500 THB</option>
           </select>
 
-          <label>Which category do you spend the most on? *</label>
+          <label id="t_spendCat">Which category do you spend the most on? *</label>
           <select id="spend_category">
             <option value="">Select</option>
             <option>Street food</option><option>Drinks</option><option>Snacks/Desserts</option><option>Fashion items</option><option>Handmade products</option>
           </select>
 
-          <label>Would you pay more for higher quality products? *</label>
+          <label id="t_quality">Would you pay more for higher quality products? *</label>
           <select id="quality_willing">
             <option value="">Select</option>
             <option>Yes</option><option>Maybe</option><option>No</option>
           </select>
 
-          <div class="hint">Monetary reflects spending behaviour and helps generate suitable recommendations.</div>
+          <div class="hint" id="t_s4hint">Monetary shows spending behaviour.</div>
         </div>
 
-        <!-- Section 5 -->
+        <!-- Step 5 -->
         <div class="section" id="sec5">
-          <h3 style="margin:0 0 6px">Section 5 — Preference & Recommendation</h3>
+          <h3 id="t_s5" style="margin:0 0 6px">Section 5 — Preference & Submit</h3>
 
-          <label>What do you prefer most at the night market? *</label>
+          <label id="t_pref">What do you prefer most at the night market? *</label>
           <select id="preference">
             <option value="">Select</option>
             <option value="street_food">Street food</option>
@@ -392,44 +451,193 @@
             <option value="handmade">Handmade products</option>
           </select>
 
-          <label>What new products would you like to see? (optional)</label>
+          <label id="t_new">What do u usually buy in our mfu night market? (At least 2)</label>
           <textarea id="new_products" placeholder="e.g., vegan options, Korean snacks, healthy drinks..."></textarea>
 
+          <!-- Consent -->
+          <div class="consentBox">
+            <div class="consentLine">
+              <input type="checkbox" id="consent" />
+              <div>
+                <div id="t_consentText">
+                  I agree to let the researcher store my survey answers for academic research purposes.
+                </div>
+                <div class="note">
+                  <a href="#" id="openConsent" onclick="openConsentModal(event)">Read details</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div class="actions">
-            <button class="btn primary" id="btnStatus">See My Status</button>
-            <button class="btn good" id="btnSubmit" disabled>Submit to Survey DB</button>
+            <div class="btnRow">
+              <button class="btn" id="btnBackLast" type="button">Back</button>
+              <button class="btn primary" id="btnCalcSubmit" type="button">Get my status + Submit</button>
+            </div>
             <button class="btn" id="btnReset" type="button">Reset</button>
           </div>
 
           <div id="formMsg" class="msg"></div>
-          <div class="hint">Tip: Generate your status first, then submit (it saves scores + group).</div>
+          <div class="note" id="t_lastNote">
+            After submission, your answers will be saved into the research database (Google Sheet).
+          </div>
         </div>
 
-      </div>
+        <!-- Bottom nav -->
+        <div class="actions" style="margin-top:16px">
+          <div class="btnRow">
+            <button class="btn" id="btnBack" type="button">Back</button>
+            <button class="btn primary" id="btnNext" type="button">Next</button>
+          </div>
+          <div class="hint" id="t_navHint"></div>
+        </div>
 
-      <div class="nav" id="nav"></div>
+        <div id="globalMsg" class="msg"></div>
+      </div>
     </div>
 
     <!-- RESULT -->
     <div class="card">
       <div class="cardHeader">
-        <h2>Your Result</h2>
+        <h2 id="t_resultTitle">Your Result</h2>
         <div class="pill" id="dbPill">Not submitted yet</div>
       </div>
       <div class="cardBody">
         <div class="resultBox" id="resultBox">
-          <div class="small">Fill the form → click <b>See My Status</b> to view your result.</div>
+          <div class="small" id="t_resultHint">
+            Fill the form → go to the last section → click <b>Get my status + Submit</b>.
+          </div>
         </div>
       </div>
     </div>
+  </div>
+</div>
 
+<!-- Consent Modal -->
+<div class="modalOverlay" id="consentModal">
+  <div class="modal">
+    <div class="modalHead">
+      <b id="t_consentTitle">Data Permission (Consent)</b>
+      <button class="btn" type="button" onclick="closeConsentModal()">Close</button>
+    </div>
+    <div class="modalBody" id="t_consentBody">
+      <p><b>What data is stored?</b> Your answers (including RFM score and status group) will be stored in a Google Sheet database for research analysis.</p>
+      <p><b>Why is it stored?</b> To segment customers into groups (RQ1) and generate product recommendations (RQ2) for an academic project.</p>
+      <p><b>Privacy</b>: Please do not enter sensitive personal information. Your responses are used for academic analysis only.</p>
+      <p><b>Voluntary</b>: You can choose not to participate by not submitting the form.</p>
+    </div>
   </div>
 </div>
 
 <script>
-  // Your Apps Script Web App URL
+  // ✅ Your Apps Script Web App URL
   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxO-oJquwQjutmBEaefwqYTYXzCJSDYcTieZpY8cyToma4e5N_S1Z6VHXHBUq2IUcQphg/exec";
 
+  // ---------- i18n dictionary ----------
+  const I18N = {
+    en: {
+      title: "MFU Night Market Survey",
+      sub: "Answer a few quick questions to discover your Night Market shopper type and get personalised product suggestions. Your responses will help us improve the MFU Night Market experience.",
+      langLabel: "Language",
+      styleTag: "Welcome!!!🍢🥤",
+      formTitle: "Survey Form",
+      resultTitle: "Your Result",
+      resultHint: "On going...",
+      navHint: "",
+      s1: "Section 1 — Basic Info",
+      s2: "Section 2 — Recency (R)",
+      s3: "Section 3 — Frequency (F)",
+      s4: "Section 4 — Monetary (M)",
+      s5: "Section 5 — Preference & Submit",
+      gender: "Gender *",
+      age: "Age Range *",
+      occ: "Occupation *",
+      nat: "Nationality *",
+      recency: "When was your last visit to MFU Night Market? *",
+      plan: "Do you plan to visit again soon? *",
+      freq: "How often do you visit MFU Night Market? *",
+      items: "On average, how many items do you purchase per visit? *",
+      money: "On average, how much do you spend per visit? *",
+      spendCat: "Which category do you spend the most on? *",
+      quality: "Would you pay more for higher quality products? *",
+      pref: "What do you prefer most at the night market? *",
+      newProd: "What do u usually buy in our mfu night market? (At least 2)",
+      s1hint: "Thank U",
+      s2hint: "Recency shows how recent the customer visited.",
+      s3hint: "Frequency shows engagement level.",
+      s4hint: "Monetary shows spending behaviour.",
+      back: "Back",
+      next: "Next",
+      reset: "Reset",
+      calcSubmit: "Get my status + Submit",
+      dbNot: "Not submitted yet",
+      dbYes: "Submitted ✅",
+      consentText: "I agree to let the researcher store my survey answers for academic research purposes.",
+      readDetails: "Read details",
+      consentTitle: "Data Permission (Consent)",
+      consentClose: "Close",
+      lastNote: "After submission, your answers will be saved into the research database (Google Sheet).",
+      warnMissing: "Please complete all required (*) fields first.",
+      warnConsent: "Please tick consent to allow data storage before submitting.",
+      submitting: "Submitting…",
+      submitted: "Submitted successfully! Thank you 🙌",
+      submitFail: "Submit failed: ",
+      submitErr: "Submit error: ",
+      step: (i, n) => `Step ${i}/${n}`
+    },
+    th: {
+      title: "แบบสำรวจตลาดกลางคืน MFU",
+      sub: "ตอบคำถามสั้น ๆ เพื่อดูสไตล์การช้อปของคุณในตลาดนัดกลางคืน พร้อมรับคำแนะนำสินค้าที่เหมาะกับคุณ ข้อมูลของคุณจะช่วยให้เราพัฒนาประสบการณ์ตลาดนัด MFU ให้ดียิ่งขึ้น",
+      langLabel: "ภาษา",
+      styleTag: " 🍢🥤",
+      formTitle: "แบบฟอร์มสำรวจ",
+      resultTitle: "ผลลัพธ์ของคุณ",
+      resultHint: ".....",
+      navHint: "",
+      s1: "ส่วนที่ 1 — ข้อมูลพื้นฐาน",
+      s2: "ส่วนที่ 2 — ความล่าสุด (R)",
+      s3: "ส่วนที่ 3 — ความถี่ (F)",
+      s4: "ส่วนที่ 4 — มูลค่าการใช้จ่าย (M)",
+      s5: "ส่วนที่ 5 — ความชอบและส่งข้อมูล",
+      gender: "เพศ *",
+      age: "ช่วงอายุ *",
+      occ: "อาชีพ *",
+      nat: "สัญชาติ *",
+      recency: "ครั้งล่าสุดที่คุณมางานตลาดกลางคืน MFU คือเมื่อไหร่? *",
+      plan: "คุณมีแผนจะมาอีกเร็ว ๆ นี้ไหม? *",
+      freq: "คุณมางานตลาดกลางคืน MFU บ่อยแค่ไหน? *",
+      items: "โดยเฉลี่ยคุณซื้อกี่รายการต่อครั้ง? *",
+      money: "โดยเฉลี่ยคุณใช้จ่ายต่อครั้งเท่าไหร่? *",
+      spendCat: "คุณใช้จ่ายมากที่สุดในหมวดไหน? *",
+      quality: "คุณยอมจ่ายเพิ่มเพื่อสินค้าคุณภาพดีขึ้นไหม? *",
+      pref: "คุณชอบสินค้าประเภทไหนมากที่สุด? *",
+      newProd: "อยากให้มีสินค้าใหม่อะไรบ้าง? (ไม่บังคับ)",
+      s1hint: "",
+      s2hint: "R แสดงว่าลูกค้ามาไม่นานแค่ไหน",
+      s3hint: "F แสดงระดับความผูกพัน/ความถี่การมา",
+      s4hint: "M แสดงพฤติกรรมการใช้จ่าย",
+      back: "ย้อนกลับ",
+      next: "ถัดไป",
+      reset: "รีเซ็ต",
+      calcSubmit: "ดูสถานะ + ส่งข้อมูล",
+      dbNot: "ยังไม่ได้ส่ง",
+      dbYes: "ส่งแล้ว ✅",
+      consentText: "ฉันยินยอมให้นักวิจัยบันทึกคำตอบแบบสำรวจเพื่อการวิจัยทางวิชาการ",
+      readDetails: "อ่านรายละเอียด",
+      consentTitle: "การขออนุญาตใช้ข้อมูล (Consent)",
+      consentClose: "ปิด",
+      lastNote: "หลังส่งข้อมูล คำตอบของคุณจะถูกบันทึกในฐานข้อมูล (Google Sheet) เพื่อการวิจัย",
+      warnMissing: "กรุณากรอกช่องที่จำเป็น (*) ให้ครบก่อน",
+      warnConsent: "กรุณาติ๊กยินยอมให้เก็บข้อมูลก่อนส่งแบบสำรวจ",
+      submitting: "กำลังส่งข้อมูล…",
+      submitted: "ส่งข้อมูลสำเร็จ! ขอบคุณมาก 🙌",
+      submitFail: "ส่งข้อมูลไม่สำเร็จ: ",
+      submitErr: "เกิดข้อผิดพลาด: ",
+      step: (i, n) => `ขั้นตอน ${i}/${n}`
+    }
+  };
+
+  // ---------- State ----------
   const sections = ["sec1","sec2","sec3","sec4","sec5"];
   let current = 0;
   let lastPayload = null;
@@ -442,22 +650,44 @@
     ["preference"]
   ];
 
+  // Elements
   const barFill = document.getElementById("barFill");
   const stepTxt = document.getElementById("stepTxt");
-  const nav = document.getElementById("nav");
   const formMsg = document.getElementById("formMsg");
+  const globalMsg = document.getElementById("globalMsg");
   const resultBox = document.getElementById("resultBox");
-  const btnStatus = document.getElementById("btnStatus");
-  const btnSubmit = document.getElementById("btnSubmit");
-  const btnReset = document.getElementById("btnReset");
   const dbPill = document.getElementById("dbPill");
+  const langSel = document.getElementById("lang");
+
+  const btnNext = document.getElementById("btnNext");
+  const btnBack = document.getElementById("btnBack");
+  const btnBackLast = document.getElementById("btnBackLast");
+  const btnCalcSubmit = document.getElementById("btnCalcSubmit");
+  const btnReset = document.getElementById("btnReset");
 
   const $ = (id) => document.getElementById(id);
   const val = (id) => $(id).value;
 
-  function setMsg(text, type=""){
-    formMsg.textContent = text || "";
-    formMsg.className = "msg " + (type || "");
+  function setMsg(el, text, type=""){
+    el.textContent = text || "";
+    el.className = "msg " + (type || "");
+  }
+
+  function showSection(i){
+    current = i;
+    sections.forEach((sid, idx) => $(sid).classList.toggle("active", idx === i));
+    const pct = ((i+1)/sections.length)*100;
+    barFill.style.width = pct + "%";
+    stepTxt.textContent = I18N[getLang()].step(i+1, sections.length);
+
+    // Hide bottom nav on last step? (we keep it, but make it sensible)
+    btnNext.style.display = (i === sections.length-1) ? "none" : "inline-block";
+    btnBack.style.display = (i === 0) ? "none" : "inline-block";
+
+    // Also show the "Back" inside last section
+    btnBackLast.style.display = (i === sections.length-1) ? "inline-block" : "none";
+
+    window.scrollTo({ top: 0, behavior:"smooth" });
   }
 
   function isSectionValid(i){
@@ -473,23 +703,7 @@
     return null;
   }
 
-  function showSection(i){
-    current = i;
-    sections.forEach((sid, idx) => $(sid).classList.toggle("active", idx === i));
-
-    const pct = ((i+1)/sections.length)*100;
-    barFill.style.width = pct + "%";
-    stepTxt.textContent = `Step ${i+1}/${sections.length}`;
-
-    [...nav.children].forEach((chip, idx) => {
-      chip.classList.toggle("active", idx === i);
-      chip.classList.toggle("done", isSectionValid(idx));
-    });
-
-    window.scrollTo({ top: 0, behavior:"smooth" });
-  }
-
-  // RFM scoring
+  // ---------- RFM scoring ----------
   function scoreRecency(v){
     const map = { last_week:5, "1_2_weeks":4, "3_4_weeks":3, "1_3_months":2, more_3_months:1 };
     return map[v] ?? 0;
@@ -503,20 +717,36 @@
     return map[v] ?? 0;
   }
 
-  // Your 3 groups
+  // 3 groups
   function getGroup(R,F,M){
     const total = R + F + M;
-
     if ((R <= 2 && F <= 2) || total <= 7){
-      return { name:"The Ghost Shoppers", key:"ghost", reason:"Low recent visits and low engagement." };
+      return { name:"The Ghost Shoppers", key:"ghost", reason: langReason("ghost") };
     }
     if (total >= 12){
-      return { name:"The Night Market VIPs", key:"vip", reason:"Very active customers with strong engagement/spending." };
+      return { name:"The Night Market VIPs", key:"vip", reason: langReason("vip") };
     }
     if ((F >= 4 && M <= 3) || (total >= 8 && total <= 11)){
-      return { name:"The Street Food Survivalists", key:"surv", reason:"Regular visitors who focus on affordable items." };
+      return { name:"The Street Food Survivalists", key:"surv", reason: langReason("surv") };
     }
-    return { name:"The Ghost Shoppers", key:"ghost", reason:"Low customer activity." };
+    return { name:"The Ghost Shoppers", key:"ghost", reason: langReason("ghost") };
+  }
+
+  function langReason(key){
+    const l = getLang();
+    const reasons = {
+      en: {
+        vip: "Very active customers with strong engagement/spending.",
+        surv: "Regular visitors who focus on affordable items.",
+        ghost: "Low recent visits and low engagement."
+      },
+      th: {
+        vip: "มาและซื้อบ่อย มีการใช้จ่าย/ความผูกพันสูง",
+        surv: "มาค่อนข้างสม่ำเสมอ เน้นสินค้าราคาเข้าถึงได้",
+        ghost: "มาน้อยและไม่ค่อยมาล่าสุด"
+      }
+    };
+    return reasons[l][key];
   }
 
   function recommend(groupKey, pref){
@@ -543,6 +773,8 @@
         handmade:["Small souvenirs","Low-price handmade item","Seasonal promo gifts"]
       }
     };
+
+    // If Thai UI, you can translate recommendation text later—keeping English is acceptable for prototype.
     return (rec[groupKey] && rec[groupKey][pref]) ? rec[groupKey][pref] : ["Best sellers","Weekly promotions","Top-rated items"];
   }
 
@@ -565,11 +797,11 @@
       </div>
 
       <div class="hint" style="margin-top:10px">
-        <b>Why this status?</b> ${group.reason}
+        <b>${getLang()==="th" ? "เหตุผล:" : "Why this status?"}</b> ${group.reason}
       </div>
 
       <div style="margin-top:12px">
-        <div class="hint"><b>Recommended products</b></div>
+        <div class="hint"><b>${getLang()==="th" ? "สินค้าแนะนำ" : "Recommended products"}</b></div>
         <ul>${recs.map(x=>`<li>${x}</li>`).join("")}</ul>
       </div>
     `;
@@ -584,43 +816,146 @@
     return res.json();
   }
 
-  // Build navigation chips
-  const names = ["1) Demographic","2) Recency","3) Frequency","4) Monetary","5) Recommend"];
-  names.forEach((t, idx) => {
-    const chip = document.createElement("div");
-    chip.className = "chip" + (idx===0 ? " active" : "");
-    chip.textContent = t;
-    chip.onclick = () => showSection(idx);
-    nav.appendChild(chip);
-  });
+  // ---------- Consent modal ----------
+  function openConsentModal(e){
+    e.preventDefault();
+    document.getElementById("consentModal").style.display = "flex";
+  }
+  function closeConsentModal(){
+    document.getElementById("consentModal").style.display = "none";
+  }
+  window.openConsentModal = openConsentModal;
+  window.closeConsentModal = closeConsentModal;
 
-  document.addEventListener("change", () => {
-    [...nav.children].forEach((chip, idx) => chip.classList.toggle("done", isSectionValid(idx)));
-  });
+  // ---------- Language ----------
+  function getLang(){ return langSel.value || "en"; }
 
-  btnStatus.onclick = () => {
-    setMsg("");
+  function applyLanguage(){
+    const t = I18N[getLang()];
+
+    $("t_title").textContent = t.title;
+    $("t_sub").innerHTML = t.sub;
+    $("t_langLabel").textContent = t.langLabel;
+    $("t_styleTag").textContent = t.styleTag;
+    $("t_formTitle").textContent = t.formTitle;
+    $("t_resultTitle").textContent = t.resultTitle;
+    $("t_resultHint").innerHTML = t.resultHint;
+
+    $("t_navHint").textContent = t.navHint;
+
+    $("t_s1").textContent = t.s1;
+    $("t_s2").textContent = t.s2;
+    $("t_s3").textContent = t.s3;
+    $("t_s4").textContent = t.s4;
+    $("t_s5").textContent = t.s5;
+
+    $("t_gender").textContent = t.gender;
+    $("t_age").textContent = t.age;
+    $("t_occ").textContent = t.occ;
+    $("t_nat").textContent = t.nat;
+
+    $("t_recency").textContent = t.recency;
+    $("t_plan").textContent = t.plan;
+    $("t_freq").textContent = t.freq;
+    $("t_items").textContent = t.items;
+
+    $("t_money").textContent = t.money;
+    $("t_spendCat").textContent = t.spendCat;
+    $("t_quality").textContent = t.quality;
+
+    $("t_pref").textContent = t.pref;
+    $("t_new").textContent = t.newProd;
+
+    $("t_s1hint").textContent = t.s1hint;
+    $("t_s2hint").textContent = t.s2hint;
+    $("t_s3hint").textContent = t.s3hint;
+    $("t_s4hint").textContent = t.s4hint;
+
+    btnBack.textContent = t.back;
+    btnNext.textContent = t.next;
+    btnReset.textContent = t.reset;
+    btnBackLast.textContent = t.back;
+    btnCalcSubmit.textContent = t.calcSubmit;
+
+    dbPill.textContent = (dbPill.textContent.includes("✅") ? t.dbYes : t.dbNot);
+
+    $("t_consentText").textContent = t.consentText;
+    $("openConsent").textContent = t.readDetails;
+    $("t_consentTitle").textContent = t.consentTitle;
+    // Close button text inside modal
+    document.querySelector(".modalHead .btn").textContent = t.consentClose;
+
+    $("t_lastNote").textContent = t.lastNote;
+
+    stepTxt.textContent = t.step(current+1, sections.length);
+
+    // If result already exists, re-render reason text based on language:
+    if (lastPayload){
+      const R = lastPayload.R, F = lastPayload.F, M = lastPayload.M, total = lastPayload.total;
+      const group = getGroup(R,F,M);
+      const recs = lastPayload.recommendations || [];
+      renderResult(R,F,M,total,group,recs);
+      // Also update stored group name (still English name) is ok; keep as is.
+    }
+  }
+
+  langSel.addEventListener("change", applyLanguage);
+
+  // ---------- Navigation buttons ----------
+  btnNext.onclick = () => {
+    setMsg(globalMsg, "");
+    if (!isSectionValid(current)){
+      const t = I18N[getLang()];
+      setMsg(globalMsg, t.warnMissing, "warn");
+      return;
+    }
+    if (current < sections.length-1) showSection(current+1);
+  };
+
+  btnBack.onclick = () => {
+    setMsg(globalMsg, "");
+    if (current > 0) showSection(current-1);
+  };
+  btnBackLast.onclick = () => {
+    setMsg(formMsg, "");
+    showSection(current-1);
+  };
+
+  // ---------- Final merged button: Calculate + Submit ----------
+  btnCalcSubmit.onclick = async () => {
+    const t = I18N[getLang()];
+    setMsg(formMsg, "");
+    setMsg(globalMsg, "");
+
     const miss = firstMissing();
     if (miss){
-      setMsg("Please complete all required (*) fields first.", "warn");
+      setMsg(globalMsg, t.warnMissing, "warn");
       showSection(miss.section);
       $(miss.field).focus();
-      btnSubmit.disabled = true;
-      lastPayload = null;
       return;
     }
 
+    // Consent required
+    if (!document.getElementById("consent").checked){
+      setMsg(formMsg, t.warnConsent, "warn");
+      return;
+    }
+
+    // Calculate
     const R = scoreRecency(val("recency"));
     const F = scoreFrequency(val("frequency"));
     const M = scoreMonetary(val("monetary"));
-    const total = R+F+M;
-
+    const total = R + F + M;
     const group = getGroup(R,F,M);
     const recs = recommend(group.key, val("preference"));
 
     renderResult(R,F,M,total,group,recs);
 
+    // Payload
     lastPayload = {
+      language: getLang(),                 // optional (if you later store in sheet)
+      consent: true,                       // optional (if you later store in sheet)
+
       gender: val("gender"),
       age_range: val("age_range"),
       occupation: val("occupation"),
@@ -628,6 +963,7 @@
 
       recency: val("recency"),
       plan_visit: val("plan_visit"),
+
       frequency: val("frequency"),
       items_per_visit: val("items_per_visit"),
 
@@ -644,44 +980,46 @@
       recommendations: recs
     };
 
-    btnSubmit.disabled = false;
-    setMsg("Status generated ✅ Now click “Submit to Survey DB” to save your response.", "ok");
-  };
-
-  btnSubmit.onclick = async () => {
-    if (!lastPayload){
-      setMsg("Click “See My Status” first.", "warn");
-      return;
-    }
-    btnSubmit.disabled = true;
-    setMsg("Submitting…", "");
+    // Submit
+    btnCalcSubmit.disabled = true;
+    setMsg(formMsg, t.submitting, "");
     try{
       const out = await submitToSheet(lastPayload);
       if (out && out.success){
-        setMsg("Submitted successfully! Thank you 🙌", "ok");
-        dbPill.textContent = "Submitted ✅";
+        setMsg(formMsg, t.submitted, "ok");
+        dbPill.textContent = t.dbYes;
       } else {
-        setMsg("Submit failed: " + (out.error || "Unknown error"), "err");
-        btnSubmit.disabled = false;
+        setMsg(formMsg, t.submitFail + (out.error || "Unknown error"), "err");
+        btnCalcSubmit.disabled = false;
       }
     }catch(e){
-      setMsg("Submit error: " + String(e), "err");
-      btnSubmit.disabled = false;
+      setMsg(formMsg, t.submitErr + String(e), "err");
+      btnCalcSubmit.disabled = false;
     }
   };
 
+  // ---------- Reset ----------
   btnReset.onclick = () => {
-    if (!confirm("Reset all answers?")) return;
+    const t = I18N[getLang()];
+    if (!confirm(getLang()==="th" ? "รีเซ็ตคำตอบทั้งหมด?" : "Reset all answers?")) return;
+
     document.querySelectorAll("select, textarea").forEach(el => el.value = "");
+    document.getElementById("consent").checked = false;
+
     lastPayload = null;
-    btnSubmit.disabled = true;
-    dbPill.textContent = "Not submitted yet";
-    resultBox.innerHTML = `<div class="small">Fill the form → click <b>See My Status</b> to view your result.</div>`;
-    setMsg("");
+    btnCalcSubmit.disabled = false;
+
+    dbPill.textContent = t.dbNot;
+    resultBox.innerHTML = `<div class="small" id="t_resultHint">${t.resultHint}</div>`;
+    setMsg(formMsg, "");
+    setMsg(globalMsg, "");
     showSection(0);
+    applyLanguage();
   };
 
+  // Init
   showSection(0);
+  applyLanguage();
 </script>
 </body>
 </html>
